@@ -22,20 +22,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ```vegalite
 {
-    "data":{
-        "url": "https://cdn.jsdelivr.net/gh/koaning/justcharts/bigmac.csv",
-        "format": {
-            "type": "csv"
-        }
-    },
-    "mark": "line",
-    "encoding": {
-        "x": {"field": "date", "type": "temporal"},
-        "y": {"field": "local_price", "type": "quantitative"},
-        "color": {"field": "currency_code", "type": "nominal"}
-    },
-    "width": "container",
-    "title": "hello there 2"
+    "schema-url": "assets/charts/schemaone.json"
 }
 ```
 
@@ -90,7 +77,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 === "there"
  
- 
+
     ```vegalite
     {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
