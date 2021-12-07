@@ -38,7 +38,7 @@ function findProperChartWidth(el) {
     // mkdocs-material uses 'md-content'
     var parent = findElementInParents(el, "md-content")
 
-    if (parent === undefined) {
+    if (parent === undefined || parent == null) {
         // we can't find a suitable content parent
         // 800 width is a good default
         return '800'
