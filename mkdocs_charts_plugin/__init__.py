@@ -29,7 +29,6 @@ def fence_vegalite_custom(source, language, class_name, options, md, **kwargs):
     return f"<vegachart style='width: 100%' {id_value}{classes}{attrs}>{_escape(source)}</vegachart>"
 
 
-
 def _validateJSON(jsonData):
     try:
         json.loads(jsonData)

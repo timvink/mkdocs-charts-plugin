@@ -24,7 +24,7 @@ class ChartsPlugin(BasePlugin):
 
     def on_post_page(self, output, page, config, **kwargs):
         """
-        Insert plugin config as javascript variables into the page. 
+        Insert plugin config as javascript variables into the page.
         """
         # Find path to homepage
         path_to_homepage = self.homepage.url_relative_to(page.file)
