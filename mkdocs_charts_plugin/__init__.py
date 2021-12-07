@@ -1,10 +1,15 @@
 from pymdownx.superfences import _escape
 
+import json
+
 
 def fence_vegalite_custom(source, language, class_name, options, md, **kwargs):
     """
     Inspired by https://github.com/facelessuser/pymdown-extensions/blob/8ee5b5caec8f9373e025f50064585fb9d9b71f86/pymdownx/superfences.py#L146
     """  # noqa
+
+    if not _validateJSON(source):
+        raise ValueError(f"Your vegalite syntax is not valid JSON. Fix {source}")
 
     classes = kwargs["classes"]
     id_value = kwargs["id_value"]
@@ -22,3 +27,12 @@ def fence_vegalite_custom(source, language, class_name, options, md, **kwargs):
     )
 
     return f"<vegachart style='width: 100%' {id_value}{classes}{attrs}>{_escape(source)}</vegachart>"
+
+
+
+def _validateJSON(jsonData):
+    try:
+        json.loads(jsonData)
+    except ValueError as err:
+        return False
+    return True

@@ -16,20 +16,22 @@ class ChartsPlugin(BasePlugin):
     )
 
     def on_page_content(self, html, page, config, files, **kwargs):
-
+        """
+        Store reference to homepage
+        """
         if page.file.src_path == "index.md":
-            self.config["root_url"] = page.abs_url
             self.homepage = page.file
-            # print(page.abs_url)
 
     def on_post_page(self, output, page, config, **kwargs):
-
+        """
+        Insert plugin config as javascript variables into the page. 
+        """
+        # Find path to homepage
         path_to_homepage = self.homepage.url_relative_to(page.file)
         path_to_homepage = os.path.dirname(path_to_homepage)
         if config.get("use_directory_urls"):
             path_to_homepage = os.path.join("..", path_to_homepage)
         self.config["path_to_homepage"] = path_to_homepage
-        print(f"page {page} with path to homepage '{path_to_homepage}'")
 
         # ensure plugin config is string
         self.config["use_data_path"] = str(self.config["use_data_path"])
@@ -46,15 +48,3 @@ class ChartsPlugin(BasePlugin):
         output = output[:idx] + add_variables + output[idx:]
 
         return output
-
-    # plan:
-    # traverse upwards untill you find the `mkdocs.yml` file
-    # read that,
-    # find the directory of the docs_dir
-    # parse the json, get the schema url, look in the docs_dir, read the JSON
-    # return the source
-    # import os
-    # print(os.getcwd())
-    # from pathlib import Path
-    # import json
-    # schema = json.loads(Path("docs/assets/charts/schemaone.json").read_text())

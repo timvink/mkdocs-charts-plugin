@@ -19,11 +19,6 @@ pip3 install mkdocs-charts-plugin
 # TODO:
 
 
-
-## validator fences
-
-- add a validator python function for is valid JSON
-
 ## plugin to include JS and set the markdown_extension also?
 
 
@@ -44,6 +39,9 @@ https://vega.github.io/vega-themes/?renderer=canvas&theme=quartz
 
 ## More
 
+- add tests
+    - can it build?
+    - invalid JSON error
 - write docs
     - page on how it works
 - promote the plugin
