@@ -35,17 +35,22 @@ function findElementInParents(el, classname) {
 
 function findProperChartWidth(el) {
 
-    // mkdocs-material uses 'md-content'
+    // mkdocs-material theme uses 'md-content'
     var parent = findElementInParents(el, "md-content")
-
+    
+    // mkdocs theme uses 'col-md-9'
+    if (parent === undefined || parent == null) {
+        var parent = findElementInParents(el, "col-md-9")        
+    }
     if (parent === undefined || parent == null) {
         // we can't find a suitable content parent
         // 800 width is a good default
         return '800'
     } else {
         // Use full width of parent
-        // Should be equilavent to width: 100%
-        return parent.offsetWidth
+        // Should bparent.offsetWidth - parseFloat(computedStyle.paddingLeft) - parseFloat(computedStyle.paddingRight) e equilavent to width: 100%
+        computedStyle = getComputedStyle(parent)
+        return parent.offsetWidth - parseFloat(computedStyle.paddingLeft) - parseFloat(computedStyle.paddingRight) 
     }
 }
 

@@ -19,10 +19,6 @@ pip3 install mkdocs-charts-plugin
 # TODO:
 
 
-## set width correctly 
-
-check for mkdocs theme
-
 
 ## validator fences
 
