@@ -24,23 +24,6 @@ pip3 install mkdocs-charts-plugin
 check for mkdocs theme
 
 
-## support data files located in `docs/` folder
-
-we need a relative URL for the data
-
---> parse it in the fence_ function?
-- is valid json
-- convert to json
-- look for .get('data').get('url')
-- is absolute?
-- some mkdocs function to get absolute url
-
-- in the plugin docs, is the URL relative to mkdocs.yml or to `docs/` ?
-
-## data path
-
-find the mkdocs root path
-
 ## validator fences
 
 - add a validator python function for is valid JSON
@@ -60,6 +43,8 @@ https://vega.github.io/vega-themes/?renderer=canvas&theme=quartz
 ## Styling
 
 - CSS for styling colors to use/match mkdocs-material ?
+
+## Support for instant loading mkdocs-material
 
 ## More
 

@@ -12,6 +12,7 @@ plugins:
       default_height: "300"
       renderer: "canvas"
 
+use_directory_urls: true
 
 markdown_extensions:
   - pymdownx.superfences:

@@ -49,6 +49,48 @@ function findProperChartWidth(el) {
     }
 }
 
+function updateURL(url) {
+    // detect if absolute UR:
+    // credits https://stackoverflow.com/a/19709846
+    var r = new RegExp('^(?:[a-z]+:)?//', 'i');
+    if (r.test(url)) {
+        return url;
+    }
+
+    // If 'use_data_path' is set to true
+    // schema and data urls are relative to
+    // 'data_path', not the to current page
+    // We need to update the specified URL
+    // to point to the actual location relative to current page
+    // Example:
+    // Actual location data file: docs/assets/data.csv
+    // Page: docs/folder/page.md
+    // data url in page's schema: assets/data.csv
+    // data_path in plugin settings: ""
+    // use_data_path in plugin settings: True
+    // path_to_homepage: ".." (this was detected in plugin on_post_page() event)
+    // output url: "../assets/data.csv"
+    if (mkdocs_chart_plugin['use_data_path'] == "True")  {
+        new_url = window.location.href
+        new_url = new_url.endsWith('/') ? new_url.slice(0, -1) : new_url;
+        
+        if (mkdocs_chart_plugin['path_to_homepage'] != "") {
+            new_url += "/" + mkdocs_chart_plugin['path_to_homepage']
+        }
+
+        new_url = new_url.endsWith('/') ? new_url.slice(0, -1) : new_url;
+        new_url += "/" + url
+        new_url = new_url.endsWith('/') ? new_url.slice(0, -1) : new_url;
+
+        if (mkdocs_chart_plugin['data_path'] != "") {
+            new_url += "/" + mkdocs_chart_plugin['data_path']
+        }
+
+        console.log(new_url)
+        return new_url
+    }
+    return url;
+}
 
 function embedChart(block, schema) {
 
@@ -74,12 +116,19 @@ function embedChart(block, schema) {
     // charts widths are screwed in content tabs (thinks its zero width)
     // https://squidfunk.github.io/mkdocs-material/reference/content-tabs/?h=
     // we need to set an explicit, absolute width in those cases
-    // is chart in tabbed-content?
+    // detect if chart is in tabbed-content:
     if (classnameInParents(block, "tabbed-content")) {
       var chart_width = schema.width || 'notset';
       if (isNaN(chart_width)) {
           schema.width = findProperChartWidth(block);
       }
+    }
+
+    // Update URL if 'use_data_path' is configured
+    if ("data" in schema) {
+        if ("url" in schema.data) {
+            schema.data.url = updateURL(schema.data.url)
+        }
     }
 
     console.log(schema)
@@ -108,7 +157,9 @@ const chartplugin = className => {
 
       // get the vegalite JSON
       if ('schema-url' in block_json) {
-        fetchSchema(block_json['schema-url']).then(
+
+        var url = updateURL(block_json['schema-url'])
+        fetchSchema(url).then(
             schema => embedChart(block, schema)
         );
       } else {
