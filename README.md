@@ -2,28 +2,26 @@
 
 Mkdocs plugin to create plots from data.
 
+## Installation
+
+```shell
+pip3 install mkdocs-charts-plugin
+```
+
+## Usage
+
+
+## Options
+
+- `vega_width` (default `container`). If not set explicitly, update the vega-lite schema width with this setting (see [vegalite size](https://vega.github.io/vega-lite/docs/size.html))
+
 
 # TODO:
 
 
 ## set width correctly 
 
-IDea:
-
-- recusirve look up all parent nodes
-    - https://stackoverflow.com/questions/7332179/how-to-recursively-search-all-parentnodes
-- if in a tabbedContent
-    if not width explicitly set
-    set width to be at least 800
-    try to detect actual width
-
-if width not set
-- else set width to be 100%
-
-if height not set
- set to 300 or so
-
- https://vega.github.io/vega-lite/docs/size.html
+check for mkdocs theme
 
 
 ## support data files located in `docs/` folder
@@ -39,15 +37,9 @@ we need a relative URL for the data
 
 - in the plugin docs, is the URL relative to mkdocs.yml or to `docs/` ?
 
+## data path
 
-## set plugin options:
-
-- default_renderer [svg/canvas]
-- default_theme
-- default_height
-
-pass via CSS data-attributes to javascript, vega-embed? 
-
+find the mkdocs root path
 
 ## validator fences
 
@@ -73,9 +65,13 @@ https://vega.github.io/vega-themes/?renderer=canvas&theme=quartz
 
 - write docs
     - page on how it works
-- use the plugin in the print-site demo
 - promote the plugin
+  - blogpost, twitter
+  - plugin wiki
+  - refer to it from table-reader
+  - add to demo in print-site
 - add plotly express backend also?
+- examples with altair
 
 # Credits 
 

@@ -7,7 +7,10 @@ theme:
 
 plugins:
   # - search
-  - charts
+  - charts:
+      vega_theme: dark
+      default_height: "300"
+      renderer: "canvas"
 
 
 markdown_extensions:

@@ -1,6 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "Inflation Price Data.",
+    "title" : "schemaone",
     "data": {
       "url": "https://cdn.jsdelivr.net/gh/koaning/justcharts/bigmac.csv", 
       "format": {

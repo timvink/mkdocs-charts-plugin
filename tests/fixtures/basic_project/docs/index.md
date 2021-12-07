@@ -29,6 +29,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 ```vegalite
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title" : "two",
     "data": {
     "url": "https://cdn.jsdelivr.net/gh/koaning/justcharts/bigmac.csv", 
     "format": {
@@ -40,12 +41,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     "x": {"field": "date", "type": "temporal"},
     "y": {"field": "local_price", "type": "quantitative"},
     "color": {"field": "currency_code", "type": "nominal"}
-    },
-    "width": "container",
-    "autosize": {
-        "type": "fit",
-        "contains": "padding",
-        "resize": "true"
     }
 }
 ```
@@ -70,7 +65,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
             "y": {"field": "local_price", "type": "quantitative"},
             "color": {"field": "currency_code", "type": "nominal"}
         },
-        "width": "container",
         "title": "hello there 2"
     }
     ```
@@ -94,7 +88,6 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
         "color": {"field": "currency_code", "type": "nominal"}
         },
         "width": "600",
-        "height": "350",
         "autosize": {
             "type": "fit",
             "contains": "padding",

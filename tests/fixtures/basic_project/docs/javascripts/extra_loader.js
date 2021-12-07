@@ -58,19 +58,25 @@ function embedChart(block, schema) {
     }
     schema = Object.assign({}, baseSchema, schema);
 
-    // If width is not set at all, set to 'container'
+    // If width is not set at all, 
+    // default is set to 'container'
     // Note we inserted <vegachart style='width: 100%'>..
     // So 'container' will use 100% width
     if (!('width' in schema)) {
-        schema.width = "container"
+        schema.width = mkdocs_chart_plugin['vega_width']
     }
+
+    // Set default height if not specified
+    // if (!('height' in schema)) {
+    //     schema.height = mkdocs_chart_plugin['default_height']
+    // }
 
     // charts widths are screwed in content tabs (thinks its zero width)
     // https://squidfunk.github.io/mkdocs-material/reference/content-tabs/?h=
     // we need to set an explicit, absolute width in those cases
     // is chart in tabbed-content?
     if (classnameInParents(block, "tabbed-content")) {
-      var chart_width = schema.width || '';
+      var chart_width = schema.width || 'notset';
       if (isNaN(chart_width)) {
           schema.width = findProperChartWidth(block);
       }
@@ -78,8 +84,12 @@ function embedChart(block, schema) {
 
     console.log(schema)
     
-    // Render the chart into the (hidden) temp
-    vegaEmbed(block, schema, {actions: false, "theme": "default", "renderer": "svg"});
+    // Render the chart
+    vegaEmbed(block, schema, {
+        actions: false, 
+        "theme": mkdocs_chart_plugin['vega_theme'], 
+        "renderer": mkdocs_chart_plugin['vega_renderer']
+    });
 }
 
 // Adapted from 
