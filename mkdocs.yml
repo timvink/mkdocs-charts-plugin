@@ -8,6 +8,11 @@ theme:
   icon:
       repo: fontawesome/brands/github
 
+nav:
+  - index.md
+  - options.md
+  - contributing.md
+
 plugins:
   # - search
   - charts:
