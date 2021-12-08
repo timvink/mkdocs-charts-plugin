@@ -11,7 +11,7 @@ theme:
 plugins:
   # - search
   - charts:
-      vega_theme: dark
+      vega_theme: default
       vega_renderer: "canvas"
   - git-revision-date-localized:
       type: timeago
@@ -31,12 +31,10 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.details
   - pymdownx.superfences:
-      disable_indented_code_blocks: true
-      preserve_tabs: true
       custom_fences:
         - name: vegalite
           class: vegalite
-          format: !!python/name:mkdocs_charts_plugin.fence_vegalite_custom
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.tabbed:
       alternate_style: true 
   - pymdownx.emoji:

@@ -26,7 +26,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "License :: OSI Approved :: MIT License",
     ],
-    install_requires=["mkdocs>=1.1","pymdown-extensions>=9.1"],
+    install_requires=["mkdocs>=1.1", "pymdown-extensions>=9.1"],
     packages=find_packages(),
     entry_points={
         "mkdocs.plugins": ["charts = mkdocs_charts_plugin.plugin:ChartsPlugin"]

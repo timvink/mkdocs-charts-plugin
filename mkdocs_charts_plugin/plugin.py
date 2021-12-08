@@ -2,10 +2,15 @@ import os
 
 from mkdocs.plugins import BasePlugin
 from mkdocs.config import config_options
-
+from mkdocs.exceptions import PluginError
 from mkdocs.utils import copy_file
 
+from mkdocs_charts_plugin.fences import fence_vegalite
+
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+CUSTOM_FENCES = [{"name": "vegalite", "class": "vegalite", "format": fence_vegalite}]
 
 
 class ChartsPlugin(BasePlugin):
@@ -30,6 +35,15 @@ class ChartsPlugin(BasePlugin):
             "extra_javascript"
         ]
 
+        # Make sure custom fences are configured.
+        custom_fences = (
+            config.get("mdx_configs").get("pymdownx.superfences").get("custom_fences")
+        )
+        if not custom_fences:
+            raise PluginError(
+                "[mkdocs_charts_plugin]: You have not configured any custom fences, please see the setup instructions."
+            )
+
     def on_page_content(self, html, page, config, files, **kwargs):
         """
         Store reference to homepage
@@ -41,6 +55,10 @@ class ChartsPlugin(BasePlugin):
         """
         Insert plugin config as javascript variables into the page.
         """
+        # Early return if not necessary
+        if "vegalite" not in output:
+            return output
+
         # Find path to homepage
         path_to_homepage = self.homepage.url_relative_to(page.file)
         path_to_homepage = os.path.dirname(path_to_homepage)

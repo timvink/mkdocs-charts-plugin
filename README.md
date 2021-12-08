@@ -24,7 +24,7 @@ Next, add the following lines to your `mkdocs.yml`:
 ```yml
 plugins:
   - search
-  - table-reader
+  - charts
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/vega@5
@@ -33,12 +33,10 @@ extra_javascript:
 
 markdown_extensions:
   - pymdownx.superfences:
-      disable_indented_code_blocks: true
-      preserve_tabs: true
       custom_fences:
         - name: vegalite
           class: vegalite
-          format: !!python/name:mkdocs_charts_plugin.fence_vegalite_custom
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
 ```
 
 > If you have no `plugins` entry in your config file yet, you'll likely also want to add the `search` plugin. MkDocs enables it by default if there is no `plugins` entry set.

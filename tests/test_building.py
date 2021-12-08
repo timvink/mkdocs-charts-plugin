@@ -27,6 +27,7 @@ import logging
 from click.testing import CliRunner
 from mkdocs.__main__ import build_command
 
+
 def setup_clean_mkdocs_folder(mkdocs_yml_path, output_path):
     """
     Sets up a clean mkdocs directory.
@@ -84,7 +85,9 @@ def check_build(tmp_path, project_mkdocs, exit_code=0):
     """
     Test to make sure build fails or succeeds.
     """
-    tmp_proj = setup_clean_mkdocs_folder("tests/fixtures/projects/%s" % project_mkdocs, tmp_path)
+    tmp_proj = setup_clean_mkdocs_folder(
+        "tests/fixtures/projects/%s" % project_mkdocs, tmp_path
+    )
     result = build_docs_setup(tmp_proj)
 
     msg = "cwd: %s, result: %s, exception: %s, exc_info: %s" % (
@@ -97,7 +100,6 @@ def check_build(tmp_path, project_mkdocs, exit_code=0):
     return tmp_proj
 
 
-
 def test_basic_build(tmp_path):
     """
     Test.
@@ -108,7 +110,7 @@ def test_basic_build(tmp_path):
 @pytest.mark.skip(reason="Custom fences currently cannot raise errors")
 def test_error_invalid_json(tmp_path):
     """
-    Waiting for this feature. 
+    Waiting for this feature.
 
     See https://github.com/facelessuser/pymdown-extensions/issues/1526
     """
