@@ -13,6 +13,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CUSTOM_FENCES = [{"name": "vegalite", "class": "vegalite", "format": fence_vegalite}]
 
 
+def check_library(libnames, dependency):
+    for lib in libnames:
+        if dependency in lib:
+            return True
+    raise PluginError(
+        f"Missing 'extra_javascript' dependency for {dependency}. Please see setup instructions."
+    )
+
+
 class ChartsPlugin(BasePlugin):
 
     config_scheme = (
@@ -43,6 +52,12 @@ class ChartsPlugin(BasePlugin):
             raise PluginError(
                 "[mkdocs_charts_plugin]: You have not configured any custom fences, please see the setup instructions."
             )
+
+        # Make sure javascript is configured
+        libnames = config.get("extra_javascript", [])
+        check_library(libnames, "vega")
+        check_library(libnames, "vega-lite")
+        check_library(libnames, "vega-embed")
 
     def on_page_content(self, html, page, config, files, **kwargs):
         """
