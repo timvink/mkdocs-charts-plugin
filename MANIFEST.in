@@ -1,0 +1,1 @@
+include mkdocs_charts_plugin/js/*.js

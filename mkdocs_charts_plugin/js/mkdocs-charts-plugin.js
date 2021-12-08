@@ -91,7 +91,6 @@ function updateURL(url) {
             new_url += "/" + mkdocs_chart_plugin['data_path']
         }
 
-        console.log(new_url)
         return new_url
     }
     return url;
@@ -136,8 +135,6 @@ function embedChart(block, schema) {
         }
     }
 
-    console.log(schema)
-    
     // Render the chart
     vegaEmbed(block, schema, {
         actions: false, 
@@ -148,10 +145,9 @@ function embedChart(block, schema) {
 
 // Adapted from 
 // https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#uml-diagram-example
-//  https://github.com/koaning/justcharts/blob/main/justcharts.js
+// https://github.com/koaning/justcharts/blob/main/justcharts.js
 const chartplugin = className => {
 
-  
     // Find all of our vegalite sources and render them.
     const blocks = document.querySelectorAll('vegachart');
 
