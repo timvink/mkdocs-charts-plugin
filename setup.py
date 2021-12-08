@@ -14,6 +14,7 @@ setup(
     author="Tim Vink",
     author_email="vinktim@gmail.com",
     license="MIT",
+    include_package_data=True,
     python_requires=">=3.6",
     classifiers=[
         "Operating System :: OS Independent",
