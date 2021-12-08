@@ -31,4 +31,5 @@ jobs:
         twine upload dist/*
     - name: Deploy mkdocs site
       run: | 
+        pip install mkdocs-git-revision-date-localized-plugin
         mkdocs gh-deploy --force

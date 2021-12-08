@@ -1,0 +1,52 @@
+site_name: mkdocs-charts-plugin
+site_description: "Mkdocs plugin to include charts in your site."
+edit_uri: ''
+copyright: 'Copyright &copy; 2021'
+
+theme:
+  name: material
+  icon:
+      repo: fontawesome/brands/github
+
+plugins:
+  # - search
+  - charts:
+      vega_theme: dark
+      vega_renderer: "canvas"
+  - git-revision-date-localized:
+      type: timeago
+      timezone: Europe/Amsterdam
+      locale: en
+      fallback_to_build_date: false
+      enable_creation_date: true
+
+use_directory_urls: true
+
+markdown_extensions:
+  - meta
+  - admonition
+  - pymdownx.keys
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences:
+      disable_indented_code_blocks: true
+      preserve_tabs: true
+      custom_fences:
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fence_vegalite_custom
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+        options:
+            custom_icons:
+                - site/overrides/.icons
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
