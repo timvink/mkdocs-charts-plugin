@@ -170,5 +170,13 @@ const chartplugin = className => {
     }
   }
   
-  // This should be run on document load
-  document.addEventListener("DOMContentLoaded", () => {chartplugin("vegalite")})
+
+// Load when DOM ready
+if (typeof document$ !== "undefined") {
+    // compatibility with mkdocs-material's instant loading feature 
+    document$.subscribe(function() {
+        chartplugin("vegalite")
+    })
+} else {
+    document.addEventListener("DOMContentLoaded", () => {chartplugin("vegalite")})
+}

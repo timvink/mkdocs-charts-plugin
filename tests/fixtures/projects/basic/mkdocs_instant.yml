@@ -2,6 +2,8 @@ site_name: My Docs
 
 theme:
   name: material
+  features:
+    - navigation.instant
 
 plugins:
   # - search
