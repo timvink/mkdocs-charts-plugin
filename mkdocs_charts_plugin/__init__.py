@@ -11,7 +11,7 @@ def fence_vegalite_custom(source, language, class_name, options, md, **kwargs):
     """  # noqa
 
     if not _validateJSON(source):
-        raise ValueError(f"Your vegalite syntax is not valid JSON. Fix {source}")
+        raise PluginError(f"Your vegalite syntax is not valid JSON. Fix {source}")
 
     classes = kwargs["classes"]
     id_value = kwargs["id_value"]
