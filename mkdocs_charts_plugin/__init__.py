@@ -1,5 +1,7 @@
 from pymdownx.superfences import _escape
 
+from mkdocs.exceptions import PluginError
+
 import json
 
 
@@ -32,6 +34,6 @@ def fence_vegalite_custom(source, language, class_name, options, md, **kwargs):
 def _validateJSON(jsonData):
     try:
         json.loads(jsonData)
-    except ValueError as err:
+    except Exception:
         return False
     return True
