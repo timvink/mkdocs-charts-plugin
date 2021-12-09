@@ -28,6 +28,7 @@ class ChartsPlugin(BasePlugin):
         ("data_path", config_options.Type(str, default="")),
         ("use_data_path", config_options.Type(bool, default=True)),
         ("vega_theme", config_options.Type(str, default="default")),
+        ("vega_theme_dark", config_options.Type(str, default="dark")),
         ("vega_renderer", config_options.Type(str, default="svg")),
         ("vega_width", config_options.Type(str, default="container")),
         ("fallback_width", config_options.Type(str, default="800")),

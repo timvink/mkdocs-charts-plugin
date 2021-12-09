@@ -96,6 +96,8 @@ function updateURL(url) {
     return url;
 }
 
+var vegalite_charts = [];
+
 function embedChart(block, schema) {
 
     // Make sure the schema is specified
@@ -135,10 +137,19 @@ function embedChart(block, schema) {
         }
     }
 
+    // Save the block and schema
+    // This way we can re-render the block
+    // in a different theme
+    vegalite_charts.push({'block' : block, 'schema': schema});
+
+    // mkdocs-material has a dark mode
+    // detect which one is being used
+    var theme = (document.querySelector('body').getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
+
     // Render the chart
     vegaEmbed(block, schema, {
         actions: false, 
-        "theme": mkdocs_chart_plugin['vega_theme'], 
+        "theme": theme, 
         "renderer": mkdocs_chart_plugin['vega_renderer']
     });
 }
@@ -165,11 +176,39 @@ const chartplugin = className => {
         );
       } else {
         embedChart(block, block_json);
-      }  
+      }
 
     }
   }
   
+
+// mkdocs-material has a dark mode including a toggle
+// We should watch when dark mode changes and update charts accordingly
+
+var bodyelement = document.querySelector('body');
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === "attributes") {
+        
+        if (mutation.attributeName == "data-md-color-scheme") {
+
+            var theme = (bodyelement.getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
+            for (let i = 0; i < vegalite_charts.length; i++) {
+                vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
+                    actions: false, 
+                    "theme": theme, 
+                    "renderer": mkdocs_chart_plugin['vega_renderer']
+                });
+            }
+        }
+
+      }
+    });
+  });
+observer.observe(bodyelement, {
+attributes: true //configure it to listen to attribute changes
+});
+
 
 // Load when DOM ready
 if (typeof document$ !== "undefined") {
