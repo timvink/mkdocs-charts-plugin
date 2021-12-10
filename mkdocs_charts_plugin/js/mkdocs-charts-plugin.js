@@ -4,6 +4,19 @@ async function fetchSchema(url){
     var schema = await resp.json();
     return schema
 }
+ 
+function checkNested(obj /*, level1, level2, ... levelN*/) {
+    var args = Array.prototype.slice.call(arguments, 1);
+  
+    for (var i = 0; i < args.length; i++) {
+      if (!obj || !obj.hasOwnProperty(args[i])) {
+        return false;
+      }
+      obj = obj[args[i]];
+    }
+    return true;
+  }
+  
 
 
 function classnameInParents(el, classname) {
@@ -131,18 +144,23 @@ function embedChart(block, schema) {
     }
 
     // Update URL if 'use_data_path' is configured
-    if ("data" in schema) {
-        if ("url" in schema.data) {
-            schema.data.url = updateURL(schema.data.url)
-        }
+    if (schema?.data?.url !== undefined) {
+        schema.data.url = updateURL(schema.data.url)
     }
-    if ("spec" in schema) {
-        if ("data" in schema.spec) {
-            if ("url" in schema.spec.data) {
-                schema.spec.data.url = updateURL(schema.spec.data.url)
+    if (schema?.spec?.data?.url !== undefined) {
+        schema.spec.data.url = updateURL(schema.spec.data.url)
+    }
+    // see docs/assets/data/geo_choropleth.json for example
+    if (schema.transform) {
+        for (const t of schema.transform) { 
+            if (t?.from?.data?.url !== undefined) {
+                t.from.data.url = updateURL(t.from.data.url)
             }
         }
     }
+    
+
+
 
     // Save the block and schema
     // This way we can re-render the block
