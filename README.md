@@ -65,3 +65,9 @@ You can insert any valid [vegalite](https://vega.github.io/vega-lite/) JSON into
 ```
 ````
 
+See the [vegalite editor](https://vega.github.io/editor/#/) for a range of examples you could copy-paste into your mkdocs site
+
+## Documentation
+
+See the documentation [timvink.github.io/mkdocs-charts-plugin](https://timvink.github.io/mkdocs-charts-plugin/) for examples, use cases and options.
+
