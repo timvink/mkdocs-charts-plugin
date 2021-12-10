@@ -136,6 +136,13 @@ function embedChart(block, schema) {
             schema.data.url = updateURL(schema.data.url)
         }
     }
+    if ("spec" in schema) {
+        if ("data" in schema.spec) {
+            if ("url" in schema.spec.data) {
+                schema.spec.data.url = updateURL(schema.spec.data.url)
+            }
+        }
+    }
 
     // Save the block and schema
     // This way we can re-render the block
