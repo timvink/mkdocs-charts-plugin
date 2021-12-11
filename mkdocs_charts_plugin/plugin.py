@@ -18,7 +18,7 @@ def check_library(libnames, dependency):
         if dependency in lib:
             return True
     raise PluginError(
-        f"Missing 'extra_javascript' dependency for {dependency}. Please see setup instructions."
+        f"[mkdocs_charts_plugin]: Missing 'extra_javascript' dependency for {dependency}. Please see setup instructions."
     )
 
 
