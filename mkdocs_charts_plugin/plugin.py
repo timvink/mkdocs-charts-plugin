@@ -77,28 +77,7 @@ class ChartsPlugin(BasePlugin):
         if "vegalite" not in output:
             return output
 
-        # Find path to homepage
-        path_to_homepage = self.homepage.url_relative_to(page.file)
-        path_to_homepage = os.path.dirname(path_to_homepage)
-        if config.get("use_directory_urls"):
-            path_to_homepage = os.path.join("..", path_to_homepage)
-        self.config["path_to_homepage"] = path_to_homepage
-
-        # ensure plugin config is string
-        self.config["use_data_path"] = str(self.config["use_data_path"])
-
-        # Config as javascript dictionary
-        add_variables = f"""
-        <script>
-        var mkdocs_chart_plugin = {self.config}
-        </script>
-        """
-
-        # insert into end of page
-        idx = output.index("</body>")
-        output = output[:idx] + add_variables + output[idx:]
-
-        return output
+        return self.add_javascript_variables(output, page, config)
 
     def on_post_build(self, config, **kwargs):
         """
@@ -113,3 +92,34 @@ class ChartsPlugin(BasePlugin):
             os.path.join(os.path.join(HERE, "js"), "mkdocs-charts-plugin.js"),
             js_file_path,
         )
+
+    def add_javascript_variables(self, html, page, config):
+        """
+        Each page might be in a different location.
+
+        Determine path to root and add to html of page as a JS variable.
+        """
+        plugin_config = self.config.copy()
+
+        # Find path to homepage
+        path_to_homepage = self.homepage.url_relative_to(page.file)
+        path_to_homepage = os.path.dirname(path_to_homepage)
+        if config.get("use_directory_urls"):
+            path_to_homepage = os.path.join("..", path_to_homepage)
+        plugin_config["path_to_homepage"] = path_to_homepage
+
+        # ensure plugin config is string
+        plugin_config["use_data_path"] = str(plugin_config["use_data_path"])
+
+        # Config as javascript dictionary
+        add_variables = f"""
+        <script>
+        var mkdocs_chart_plugin = {plugin_config}
+        </script>
+        """
+
+        # insert into end of page
+        idx = html.index("</body>")
+        html = html[:idx] + add_variables + html[idx:]
+
+        return html
