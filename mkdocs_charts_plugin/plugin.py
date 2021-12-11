@@ -47,7 +47,9 @@ class ChartsPlugin(BasePlugin):
 
         # Make sure custom fences are configured.
         custom_fences = (
-            config.get("mdx_configs").get("pymdownx.superfences").get("custom_fences")
+            config.get("mdx_configs", {})
+            .get("pymdownx.superfences", {})
+            .get("custom_fences", {})
         )
         if not custom_fences:
             raise PluginError(
