@@ -1,6 +1,9 @@
 site_name: mkdocs-charts-plugin
 site_description: "Mkdocs plugin to include charts in your site."
+site_url: 'https://timvink.github.io/mkdocs-charts-plugin/'
 edit_uri: ''
+repo_url: 'https://github.com/timvink/mkdocs-charts-plugin'
+repo_name: 'timvink/mkdocs-charts-plugin'
 copyright: 'Copyright &copy; 2021'
 use_directory_urls: True
 
