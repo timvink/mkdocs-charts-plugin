@@ -6,7 +6,6 @@ site_name: My Docs
 #     - navigation.instant
 
 plugins:
-  # - search
   - charts:
       vega_theme: dark
       vega_renderer: "canvas"
@@ -20,7 +19,7 @@ markdown_extensions:
       custom_fences:
         - name: vegalite
           class: vegalite
-          format: !!python/name:mkdocs_charts_plugin.fence_vegalite_custom
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.tabbed:
       alternate_style: true 
 

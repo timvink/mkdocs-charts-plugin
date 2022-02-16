@@ -1,4 +1,5 @@
 from pymdownx.superfences import _escape
+from pymdownx.superfences import SuperFencesException
 
 from mkdocs.exceptions import PluginError
 
@@ -11,7 +12,7 @@ def fence_vegalite(source, language, class_name, options, md, **kwargs):
     """  # noqa
 
     if not _validateJSON(source):
-        raise PluginError(f"Your vegalite syntax is not valid JSON. Fix {source}")
+        raise SuperFencesException from PluginError(f"Your vegalite syntax is not valid JSON. Fix:\n\n{source}")
 
     classes = kwargs["classes"]
     id_value = kwargs["id_value"]

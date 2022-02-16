@@ -107,8 +107,7 @@ def test_basic_build(tmp_path):
     check_build(tmp_path, "basic/mkdocs.yml")
 
 
-@pytest.mark.skip(reason="Custom fences currently cannot raise errors")
-def test_error_invalid_json(tmp_path):
+def test_error_invalid_json(tmp_path, capsys):
     """
     Waiting for this feature.
 
@@ -117,8 +116,5 @@ def test_error_invalid_json(tmp_path):
     tmp_proj = setup_clean_mkdocs_folder(
         "tests/fixtures/projects/invalid_json/mkdocs.yml", tmp_path
     )
-
     result = build_docs_setup(tmp_proj)
-
     assert result.exit_code == 1
-    assert "Your vegalite syntax is not valid JSON." in result.output

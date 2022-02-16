@@ -5,10 +5,9 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## charts on invalid json
 
+This one should give a plugin error because we can parse the JSOn in python (notice the trailing komma on the last line makes the JSON invalid):
 
-This one should give a plugin error because we can parse the JSOn in python (notice the trailing komma makes the JSON invalid):
-
-```chartvegalite
+```vegalite
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -29,5 +28,5 @@ This one should give a plugin error because we can parse the JSOn in python (not
         "contains": "padding",
         "resize": "true"
     }
-}
+},
 ```
