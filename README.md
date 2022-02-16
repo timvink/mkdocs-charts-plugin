@@ -6,7 +6,7 @@
 
 # mkdocs-charts-plugin
 
-[MkDocs](https://www.mkdocs.org/) plugin to create plots from data using the declarative [vegalite](https://vega.github.io/vega-lite/) syntax. This makes it easier to build reproducible reports.
+[MkDocs](https://www.mkdocs.org/) plugin to create plots from data using the declarative [vegalite](https://vega.github.io/vega-lite/) syntax. This makes it easier to [build reproducible reports with MkDocs](https://timvink.nl/reproducible-reports-with-mkdocs/).
 
 👉 See it in action on the [demo page](https://timvink.github.io/mkdocs-charts-plugin/demo/)
 
