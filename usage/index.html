@@ -1,0 +1,614 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mkdocs plugin to include charts in your site.">
+      
+      
+      
+        <link rel="canonical" href="https://timvink.github.io/mkdocs-charts-plugin/usage/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+    
+    
+      
+        <title>Usage - mkdocs-charts-plugin</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e8d9bf0c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/timeago.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdocs-charts-plugin" class="md-header__button md-logo" aria-label="mkdocs-charts-plugin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs-charts-plugin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/timvink/mkdocs-charts-plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    timvink/mkdocs-charts-plugin
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdocs-charts-plugin" class="md-nav__button md-logo" aria-label="mkdocs-charts-plugin" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mkdocs-charts-plugin
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/timvink/mkdocs-charts-plugin" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    timvink/mkdocs-charts-plugin
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Usage
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-specify-urls" class="md-nav__link">
+    How to specify URLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-schema-urls" class="md-nav__link">
+    Specifying schema-URLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altair" class="md-nav__link">
+    Altair
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../options/" class="md-nav__link">
+        Options
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        Demo
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-specify-urls" class="md-nav__link">
+    How to specify URLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-schema-urls" class="md-nav__link">
+    Specifying schema-URLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#altair" class="md-nav__link">
+    Altair
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="usage">Usage</h1>
+<div class="admonition quote">
+<p class="admonition-title">What is vegalite?</p>
+<p>Vega-Lite is a high-level grammar of interactive graphics. It provides a concise, declarative JSON syntax to create an expressive range of visualizations for data analysis and presentation. <a href="https://vega.github.io/vega-lite/">source</a></p>
+</div>
+<p><code>mkdocs-charts-plugin</code> makes it easy to insert any valid vega-lite specification into your markdown pages. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>```vegalite
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>{
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  &quot;description&quot;: &quot;A simple bar chart with embedded data.&quot;,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  &quot;data&quot;: {
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    &quot;values&quot;: [
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      {&quot;a&quot;: &quot;A&quot;, &quot;b&quot;: 28}, {&quot;a&quot;: &quot;B&quot;, &quot;b&quot;: 55}, {&quot;a&quot;: &quot;C&quot;, &quot;b&quot;: 43},
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      {&quot;a&quot;: &quot;D&quot;, &quot;b&quot;: 91}, {&quot;a&quot;: &quot;E&quot;, &quot;b&quot;: 81}, {&quot;a&quot;: &quot;F&quot;, &quot;b&quot;: 53},
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      {&quot;a&quot;: &quot;G&quot;, &quot;b&quot;: 19}, {&quot;a&quot;: &quot;H&quot;, &quot;b&quot;: 87}, {&quot;a&quot;: &quot;I&quot;, &quot;b&quot;: 52}
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ]
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  },
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  &quot;mark&quot;: {&quot;type&quot;: &quot;bar&quot;, &quot;tooltip&quot;: true},
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  &quot;encoding&quot;: {
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    &quot;x&quot;: {&quot;field&quot;: &quot;a&quot;, &quot;type&quot;: &quot;nominal&quot;, &quot;axis&quot;: {&quot;labelAngle&quot;: 0}},
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    &quot;y&quot;: {&quot;field&quot;: &quot;b&quot;, &quot;type&quot;: &quot;quantitative&quot;}
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  }
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>}
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>```
+</code></pre></div>
+<p>will render as:</p>
+<p><vegachart style='width: 100%'  class="vegalite">{
+  "description": "A simple bar chart with embedded data.",
+  "data": {
+    "values": [
+      {"a": "A", "b": 28}, {"a": "B", "b": 55}, {"a": "C", "b": 43},
+      {"a": "D", "b": 91}, {"a": "E", "b": 81}, {"a": "F", "b": 53},
+      {"a": "G", "b": 19}, {"a": "H", "b": 87}, {"a": "I", "b": 52}
+    ]
+  },
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {"field": "a", "type": "nominal", "axis": {"labelAngle": 0}},
+    "y": {"field": "b", "type": "quantitative"}
+  }
+}</vegachart></p>
+<p>For more examples, see the <a href="../demo/">demo</a> page.</p>
+<h2 id="how-to-specify-urls">How to specify URLs</h2>
+<p><code>mkdocs-charts-plugin</code> becomes really powerful when used with datasets. You could re-write the example above by referring to a data file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">```vegali</span><span class="kc">te</span><span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A simple bar chart with embedded data.&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="hll"><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;url&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assets/charts/data/basic_bar_chart.json&quot;</span><span class="p">},</span><span class="w"></span>
+</span><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;labelAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}},</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="err">```</span><span class="w"></span>
+</code></pre></div>
+<p>Note that the URL is relative to the <code>docs/</code> folder, which means you can re-order the hierarchy of markdown pages without breaking charts. If you prefer specifying URLs relative to the location of the markdown page, set <code>use_data_path</code> to <code>False</code> (see plugin <a href="../options/">options</a>).</p>
+<p>Note you could also use an absolute URL to a dataset somewhere on the web or a public git repository, for example <code>https://raw.githubusercontent.com/timvink/mkdocs-charts-plugin/main/docs/assets/charts/data/basic_bar_chart.json</code>.</p>
+<h2 id="specifying-schema-urls">Specifying schema-URLs</h2>
+<p>To avoid long, distracting chart schemas in your markdown files you can choose to save a chart schema separately in a <code>.json</code> file and point to it using a <code>schema-url</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>```vegalite
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>{
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  &quot;schema-url&quot;: &quot;assets/charts/chart_basic_bar_chart.json&quot;
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>}
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>```
+</code></pre></div>
+<h2 id="altair">Altair</h2>
+<p><a href="https://altair-viz.github.io/index.html">Altair</a> is a declarative statistical visualization library for Python.</p>
+<p>Because Altair is built on <a href="http://vega.github.io/vega-lite">Vega-Lite</a>, you can <a href="https://altair-viz.github.io/user_guide/saving_charts.html">save Altair Charts</a> in vega-lite format. </p>
+<p>For example, the altair gallery has this <a href="https://altair-viz.github.io/gallery/bar_chart_with_highlighted_bar.html">bar chart with highlighted bar</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">wheat</span><span class="p">()</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;wheat:Q&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="c1"># The highlight will be set on the result of a conditional statement</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">alt</span><span class="o">.</span><span class="n">datum</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1810</span><span class="p">,</span>  <span class="c1"># If the year is 1810 this test returns True,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">),</span>     <span class="c1"># which sets the bar orange.</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>   <span class="c1"># And if it&#39;s not true it sets the bar steelblue.</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</code></pre></div>
+<p>That chart can be exported using <code>.save("chartname.json")</code> or <code>.to_json()</code> and quickly inserted into a mkdocs project. It will render as:</p>
+<p><vegachart style='width: 100%'  class="vegalite">{  "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json",  "config": {    "view": {      "continuousHeight": 300,      "continuousWidth": 400    }  },  "data": {    "name": "data-76d1ce26ea5761007c35827e1564d86c"  },  "datasets": {    "data-76d1ce26ea5761007c35827e1564d86c": [      {        "wages": 5.0,        "wheat": 41.0,        "year": 1565      },      {        "wages": 5.05,        "wheat": 45.0,        "year": 1570      },      {        "wages": 5.08,        "wheat": 42.0,        "year": 1575      },      {        "wages": 5.12,        "wheat": 49.0,        "year": 1580      },      {        "wages": 5.15,        "wheat": 41.5,        "year": 1585      },      {        "wages": 5.25,        "wheat": 47.0,        "year": 1590      },      {        "wages": 5.54,        "wheat": 64.0,        "year": 1595      },      {        "wages": 5.61,        "wheat": 27.0,        "year": 1600      },      {        "wages": 5.69,        "wheat": 33.0,        "year": 1605      },      {        "wages": 5.78,        "wheat": 32.0,        "year": 1610      },      {        "wages": 5.94,        "wheat": 33.0,        "year": 1615      },      {        "wages": 6.01,        "wheat": 35.0,        "year": 1620      },      {        "wages": 6.12,        "wheat": 33.0,        "year": 1625      },      {        "wages": 6.22,        "wheat": 45.0,        "year": 1630      },      {        "wages": 6.3,        "wheat": 33.0,        "year": 1635      },      {        "wages": 6.37,        "wheat": 39.0,        "year": 1640      },      {        "wages": 6.45,        "wheat": 53.0,        "year": 1645      },      {        "wages": 6.5,        "wheat": 42.0,        "year": 1650      },      {        "wages": 6.6,        "wheat": 40.5,        "year": 1655      },      {        "wages": 6.75,        "wheat": 46.5,        "year": 1660      },      {        "wages": 6.8,        "wheat": 32.0,        "year": 1665      },      {        "wages": 6.9,        "wheat": 37.0,        "year": 1670      },      {        "wages": 7.0,        "wheat": 43.0,        "year": 1675      },      {        "wages": 7.3,        "wheat": 35.0,        "year": 1680      },      {        "wages": 7.6,        "wheat": 27.0,        "year": 1685      },      {        "wages": 8.0,        "wheat": 40.0,        "year": 1690      },      {        "wages": 8.5,        "wheat": 50.0,        "year": 1695      },      {        "wages": 9.0,        "wheat": 30.0,        "year": 1700      },      {        "wages": 10.0,        "wheat": 32.0,        "year": 1705      },      {        "wages": 11.0,        "wheat": 44.0,        "year": 1710      },      {        "wages": 11.75,        "wheat": 33.0,        "year": 1715      },      {        "wages": 12.5,        "wheat": 29.0,        "year": 1720      },      {        "wages": 13.0,        "wheat": 39.0,        "year": 1725      },      {        "wages": 13.3,        "wheat": 26.0,        "year": 1730      },      {        "wages": 13.6,        "wheat": 32.0,        "year": 1735      },      {        "wages": 14.0,        "wheat": 27.0,        "year": 1740      },      {        "wages": 14.5,        "wheat": 27.5,        "year": 1745      },      {        "wages": 15.0,        "wheat": 31.0,        "year": 1750      },      {        "wages": 15.7,        "wheat": 35.5,        "year": 1755      },      {        "wages": 16.5,        "wheat": 31.0,        "year": 1760      },      {        "wages": 17.6,        "wheat": 43.0,        "year": 1765      },      {        "wages": 18.5,        "wheat": 47.0,        "year": 1770      },      {        "wages": 19.5,        "wheat": 44.0,        "year": 1775      },      {        "wages": 21.0,        "wheat": 46.0,        "year": 1780      },      {        "wages": 23.0,        "wheat": 42.0,        "year": 1785      },      {        "wages": 25.5,        "wheat": 47.5,        "year": 1790      },      {        "wages": 27.5,        "wheat": 76.0,        "year": 1795      },      {        "wages": 28.5,        "wheat": 79.0,        "year": 1800      },      {        "wages": 29.5,        "wheat": 81.0,        "year": 1805      },      {        "wages": 30.0,        "wheat": 99.0,        "year": 1810      },      {        "wages": null,        "wheat": 78.0,        "year": 1815      },      {        "wages": null,        "wheat": 54.0,        "year": 1820      }    ]  },  "encoding": {    "color": {      "condition": {        "test": "(datum.year === 1810)",        "value": "orange"      },      "value": "steelblue"    },    "x": {      "field": "year",      "type": "ordinal"    },    "y": {      "field": "wheat",      "type": "quantitative"    }  },  "mark": "bar"}</vegachart></p>
+<p>The only modification to the output JSON was removing <code>"width": 600</code> to make the chart use the full width of the page container.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-02-20T10:59:48+01:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-02-20</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-02-20T10:59:48+01:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-02-20</span>
+      
+    
+  </small>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../options/" class="md-footer__link md-footer__link--next" aria-label="Next: Options" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Options
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8aa65030.min.js"></script>
+      
+        <script src="../js/timeago.min.js"></script>
+      
+        <script src="../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../js/mkdocs-charts-plugin.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      
+    
+  
+        <script>
+        var mkdocs_chart_plugin = {'data_path': '', 'use_data_path': 'True', 'vega_theme': 'default', 'vega_theme_dark': 'dark', 'vega_renderer': 'canvas', 'vega_width': 'container', 'fallback_width': '800', 'path_to_homepage': '../'}
+        </script>
+        </body>
+</html>
