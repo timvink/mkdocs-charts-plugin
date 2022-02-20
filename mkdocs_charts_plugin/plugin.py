@@ -66,7 +66,7 @@ class ChartsPlugin(BasePlugin):
         """
         Store reference to homepage
         """
-        if page.file.src_path == "index.md":
+        if page.is_homepage:
             self.homepage = page.file
 
     def on_post_page(self, output, page, config, **kwargs):
