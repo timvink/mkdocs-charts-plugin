@@ -12,6 +12,8 @@
 
 Includes supports for [mkdocs-material](https://github.com/squidfunk/mkdocs-material) theme features like [instant loading](https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/?h=reload#instant-loading) and [dark color themes](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette-toggle).
 
+Do checkout the other [charting plugins for mkdocs](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins#images-tables-charts--graphs) that might suit your specific use-case better.
+
 ## Installation
 
 Install the plugin using `pip3`:
