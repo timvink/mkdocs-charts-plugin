@@ -1,8 +1,8 @@
 import os
 
-from mkdocs.plugins import BasePlugin
 from mkdocs.config import config_options
 from mkdocs.exceptions import PluginError
+from mkdocs.plugins import BasePlugin
 from mkdocs.utils import copy_file
 
 from mkdocs_charts_plugin.fences import fence_vegalite
@@ -23,7 +23,6 @@ def check_library(libnames, dependency):
 
 
 class ChartsPlugin(BasePlugin):
-
     config_scheme = (
         ("data_path", config_options.Type(str, default="")),
         ("use_data_path", config_options.Type(bool, default=True)),
@@ -32,6 +31,7 @@ class ChartsPlugin(BasePlugin):
         ("vega_renderer", config_options.Type(str, default="svg")),
         ("vega_width", config_options.Type(str, default="container")),
         ("fallback_width", config_options.Type(str, default="800")),
+        ("homepage_uri", config_options.Type(str, default="")),
     )
 
     def on_config(self, config, **kwargs):
@@ -41,16 +41,10 @@ class ChartsPlugin(BasePlugin):
         """
         # Add pointer to mkdocs-charts-plugin.js
         # which is added to the output directory during on_post_build() event
-        config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + config[
-            "extra_javascript"
-        ]
+        config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + config["extra_javascript"]
 
         # Make sure custom fences are configured.
-        custom_fences = (
-            config.get("mdx_configs", {})
-            .get("pymdownx.superfences", {})
-            .get("custom_fences", {})
-        )
+        custom_fences = config.get("mdx_configs", {}).get("pymdownx.superfences", {}).get("custom_fences", {})
         if not custom_fences:
             raise PluginError(
                 "[mkdocs_charts_plugin]: You have not configured any custom fences, please see the setup instructions."
@@ -66,7 +60,7 @@ class ChartsPlugin(BasePlugin):
         """
         Store reference to homepage
         """
-        if page.is_homepage:
+        if page.is_homepage or page.file.src_uri == self.config.get("homepage_uri"):
             self.homepage = page.file
 
     def on_post_page(self, output, page, config, **kwargs):
