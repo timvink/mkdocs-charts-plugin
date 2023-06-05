@@ -31,7 +31,6 @@ class ChartsPlugin(BasePlugin):
         ("vega_renderer", config_options.Type(str, default="svg")),
         ("vega_width", config_options.Type(str, default="container")),
         ("fallback_width", config_options.Type(str, default="800")),
-        ("homepage_uri", config_options.Type(str, default="")),
     )
 
     def on_config(self, config, **kwargs):
@@ -55,13 +54,6 @@ class ChartsPlugin(BasePlugin):
         check_library(libnames, "vega")
         check_library(libnames, "vega-lite")
         check_library(libnames, "vega-embed")
-
-    def on_page_content(self, html, page, config, files, **kwargs):
-        """
-        Store reference to homepage
-        """
-        if page.is_homepage or page.file.src_uri == self.config.get("homepage_uri"):
-            self.homepage = page.file
 
     def on_post_page(self, output, page, config, **kwargs):
         """
@@ -95,9 +87,11 @@ class ChartsPlugin(BasePlugin):
         """
         plugin_config = self.config.copy()
 
-        # Find path to homepage
-        path_to_homepage = self.homepage.url_relative_to(page.file)
-        path_to_homepage = os.path.dirname(path_to_homepage)
+        # Find the path to the homepage
+        docs_directory = config["docs_dir"]
+        page_path = os.path.join(docs_directory, page.file.src_uri)
+        path_to_homepage = os.path.relpath(docs_directory, os.path.dirname(page_path))
+
         if config.get("use_directory_urls"):
             path_to_homepage = os.path.join("..", path_to_homepage)
         plugin_config["path_to_homepage"] = path_to_homepage
