@@ -40,7 +40,7 @@ class ChartsPlugin(BasePlugin):
         """
         # Add pointer to mkdocs-charts-plugin.js
         # which is added to the output directory during on_post_build() event
-        config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + config["extra_javascript"]
+        config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + [str(item) for item in config["extra_javascript"]]
 
         # Make sure custom fences are configured.
         custom_fences = config.get("mdx_configs", {}).get("pymdownx.superfences", {}).get("custom_fences", {})
