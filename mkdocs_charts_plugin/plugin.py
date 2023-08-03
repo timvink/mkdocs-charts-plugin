@@ -15,7 +15,7 @@ CUSTOM_FENCES = [{"name": "vegalite", "class": "vegalite", "format": fence_vegal
 
 def check_library(libnames, dependency):
     for lib in libnames:
-        if dependency in lib:
+        if dependency in str(lib):
             return True
     raise PluginError(
         f"[mkdocs_charts_plugin]: Missing 'extra_javascript' dependency for {dependency}. Please see setup instructions."
