@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="mkdocs-charts-plugin",
-    version="0.0.9",
+    version="0.0.10",
     description="MkDocs plugin to add charts from data",
     long_description=long_description,
     long_description_content_type="text/markdown",
