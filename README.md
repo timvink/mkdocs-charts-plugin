@@ -1,6 +1,7 @@
 [![Actions Status](https://github.com/timvink/mkdocs-charts-plugin/workflows/pytest/badge.svg)](https://github.com/timvink/mkdocs-charts-plugin/actions)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mkdocs-charts-plugin)
 ![PyPI](https://img.shields.io/pypi/v/mkdocs-charts-plugin)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/mkdocs-charts-plugin)
 ![GitHub contributors](https://img.shields.io/github/contributors/timvink/mkdocs-charts-plugin)
 ![PyPI - License](https://img.shields.io/pypi/l/mkdocs-charts-plugin)
 
