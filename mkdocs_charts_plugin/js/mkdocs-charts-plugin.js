@@ -109,6 +109,14 @@ function updateURL(url) {
     return url;
 }
 
+function getTheme() {
+    var themes = {
+        [mkdocs_chart_plugin['scheme']]: mkdocs_chart_plugin['vega_theme'],
+        [mkdocs_chart_plugin['scheme_dark']]: mkdocs_chart_plugin['vega_theme_dark']
+    };
+    return themes[document.querySelector('body').getAttribute('data-md-color-scheme')] || mkdocs_chart_plugin['vega_theme'];
+}
+
 var vegalite_charts = [];
 
 function embedChart(block, schema) {
@@ -167,14 +175,10 @@ function embedChart(block, schema) {
     // in a different theme
     vegalite_charts.push({'block' : block, 'schema': schema});
 
-    // mkdocs-material has a dark mode
-    // detect which one is being used
-    var theme = (document.querySelector('body').getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
-
     // Render the chart
     vegaEmbed(block, schema, {
         actions: false, 
-        "theme": theme, 
+        "theme": getTheme(),
         "renderer": mkdocs_chart_plugin['vega_renderer']
     });
 }
@@ -210,14 +214,13 @@ const chartplugin = className => {
 // mkdocs-material has a dark mode including a toggle
 // We should watch when dark mode changes and update charts accordingly
 
-var bodyelement = document.querySelector('body');
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type === "attributes") {
         
         if (mutation.attributeName == "data-md-color-scheme") {
 
-            var theme = (bodyelement.getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
+            var theme = getTheme();
             for (let i = 0; i < vegalite_charts.length; i++) {
                 vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
                     actions: false, 
@@ -230,7 +233,7 @@ var observer = new MutationObserver(function(mutations) {
       }
     });
   });
-observer.observe(bodyelement, {
+observer.observe(document.querySelector('body'), {
 attributes: true //configure it to listen to attribute changes
 });
 
