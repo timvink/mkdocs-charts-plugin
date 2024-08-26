@@ -18,7 +18,6 @@ function checkNested(obj /*, level1, level2, ... levelN*/) {
   }
   
 
-
 function classnameInParents(el, classname) {
     // check if class name in any parents
     while (el.parentNode) {
@@ -68,7 +67,14 @@ function findProperChartWidth(el) {
 }
 
 function updateURL(url) {
-    // detect if absolute UR:
+
+    // Strip anchor from URL if present
+    let anchorIndex = url.indexOf('#');
+    if (anchorIndex !== -1) {
+        url = url.substring(0, anchorIndex);
+    }
+
+    // detect if absolute URL:
     // credits https://stackoverflow.com/a/19709846
     var r = new RegExp('^(?:[a-z]+:)?//', 'i');
     if (r.test(url)) {
@@ -89,7 +95,14 @@ function updateURL(url) {
     // path_to_homepage: ".." (this was detected in plugin on_post_page() event)
     // output url: "../assets/data.csv"
     if (mkdocs_chart_plugin['use_data_path'] == "True")  {
-        new_url = window.location.href
+        let new_url = window.location.href
+
+        // Strip anchor from URL if present
+        let anchorIndex = new_url.indexOf('#');
+        if (anchorIndex !== -1) {
+            new_url = new_url.substring(0, anchorIndex);
+        }
+        
         new_url = new_url.endsWith('/') ? new_url.slice(0, -1) : new_url;
         
         if (mkdocs_chart_plugin['path_to_homepage'] != "") {
@@ -159,8 +172,6 @@ function embedChart(block, schema) {
         }
     }
     
-
-
 
     // Save the block and schema
     // This way we can re-render the block
