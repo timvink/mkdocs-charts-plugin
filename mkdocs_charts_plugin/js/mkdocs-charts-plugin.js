@@ -132,6 +132,12 @@ function getTheme() {
             ? mkdocs_chart_plugin['vega_theme_dark']
             : mkdocs_chart_plugin['vega_theme'];
     }
+    // Get theme according to user's preferred color scheme on the browser or OS
+    if (window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? mkdocs_chart_plugin['vega_theme_dark']
+            : mkdocs_chart_plugin['vega_theme'];
+    }
     // Fall back to light theme
     return mkdocs_chart_plugin['vega_theme'];
 }
@@ -227,6 +233,17 @@ const chartplugin = className => {
     }
   }
 
+function updateCharts() {
+    const theme = getTheme();
+    for (let i = 0; i < vegalite_charts.length; i++) {
+        vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
+            actions: false,
+            theme,
+            "renderer": mkdocs_chart_plugin['vega_renderer']
+        });
+    }
+}
+
 // mkdocs-material has a dark mode including a toggle
 // We should watch when dark mode changes and update charts accordingly
 
@@ -235,16 +252,7 @@ var observer = new MutationObserver(function(mutations) {
       if (mutation.type === "attributes") {
         
         if (mutation.attributeName == "data-md-color-scheme") {
-
-            const theme = getTheme();
-            for (let i = 0; i < vegalite_charts.length; i++) {
-                vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
-                    actions: false,
-                    theme,
-                    "renderer": mkdocs_chart_plugin['vega_renderer']
-                });
-            }
-
+            updateCharts();
         }
 
       }
@@ -253,6 +261,13 @@ var observer = new MutationObserver(function(mutations) {
 observer.observe(bodyelement, {
 attributes: true //configure it to listen to attribute changes
 });
+
+// Watch for user's preferred color scheme changes and update charts accordingly
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        updateCharts();
+    });
+}
 
 // Load when DOM ready
 if (typeof document$ !== "undefined") {
