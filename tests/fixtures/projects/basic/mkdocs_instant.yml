@@ -8,7 +8,8 @@ theme:
 plugins:
   # - search
   - charts:
-      vega_theme: dark
+      vega_theme_light: default
+      vega_theme_dark: dark
       vega_renderer: "canvas"
 
 use_directory_urls: true
@@ -18,7 +19,7 @@ markdown_extensions:
       custom_fences:
         - name: vegalite
           class: vegalite
-          format: !!python/name:mkdocs_charts_plugin.fences.fence__vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.tabbed:
       alternate_style: true 
 

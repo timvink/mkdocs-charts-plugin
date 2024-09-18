@@ -35,7 +35,8 @@ class ChartsPlugin(BasePlugin):
     config_scheme = (
         ("data_path", config_options.Type(str, default="")),
         ("use_data_path", config_options.Type(bool, default=True)),
-        ("vega_theme", config_options.Type(str, default="default")),
+        ("vega_theme", config_options.Type(str, default="deprecated")),
+        ("vega_theme_light", config_options.Type(str, default="default")),
         ("vega_theme_dark", config_options.Type(str, default="dark")),
         ("vega_renderer", config_options.Type(str, default="svg")),
         ("vega_width", config_options.Type(str, default="container")),
@@ -48,6 +49,11 @@ class ChartsPlugin(BasePlugin):
         Event trigger on config.
         See https://www.mkdocs.org/user-guide/plugins/#on_config.
         """
+        if self.config.get("vega_theme") != "deprecated":
+            raise PluginError(
+                "[mkdocs_charts_plugin]: 'vega_theme' is deprecated and has been renamed to 'vega_theme_light'. Together with 'vega_theme_dark' this enables automatic theme switching. Please update your mkdocs.yml."
+            )
+    
         # Add pointer to mkdocs-charts-plugin.js
         # which is added to the output directory during on_post_build() event
         config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + config["extra_javascript"]

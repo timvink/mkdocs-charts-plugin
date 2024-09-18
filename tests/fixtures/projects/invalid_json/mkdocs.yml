@@ -7,7 +7,6 @@ site_name: My Docs
 
 plugins:
   - charts:
-      vega_theme: dark
       vega_renderer: "canvas"
 
 use_directory_urls: true
