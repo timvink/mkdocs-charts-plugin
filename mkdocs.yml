@@ -33,9 +33,7 @@ nav:
 
 plugins:
   - search
-  - charts:
-      vega_theme: default
-      vega_renderer: "canvas"
+  - charts
   - git-revision-date-localized:
       type: timeago
       timezone: Europe/Amsterdam
