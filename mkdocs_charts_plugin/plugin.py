@@ -1,6 +1,6 @@
 import os
 
-from mkdocs.config import config_options
+from mkdocs.config import base, config_options
 from mkdocs.exceptions import PluginError
 from mkdocs.plugins import BasePlugin
 from mkdocs.utils import copy_file
@@ -22,6 +22,15 @@ def check_library(libnames, dependency):
     )
 
 
+class MkdocsMaterialOptions(base.Config):
+    themes_light = config_options.ListOfItems(config_options.Type(str), default=["default"])
+    themes_dark = config_options.ListOfItems(config_options.Type(str), default=["slate"])
+
+
+class IntegrationsOptions(base.Config):
+    mkdocs_material = config_options.SubConfig(MkdocsMaterialOptions)
+
+
 class ChartsPlugin(BasePlugin):
     config_scheme = (
         ("data_path", config_options.Type(str, default="")),
@@ -31,6 +40,7 @@ class ChartsPlugin(BasePlugin):
         ("vega_renderer", config_options.Type(str, default="svg")),
         ("vega_width", config_options.Type(str, default="container")),
         ("fallback_width", config_options.Type(str, default="800")),
+        ("integrations", config_options.SubConfig(IntegrationsOptions)),
     )
 
     def on_config(self, config, **kwargs):

@@ -122,6 +122,26 @@ function updateURL(url) {
     return url;
 }
 
+const bodyelement = document.querySelector('body');
+
+function getTheme() {
+    // Get theme according to mkdocs-material's color scheme
+    const materialColorScheme = bodyelement.getAttribute('data-md-color-scheme');
+    if (materialColorScheme) {
+        return mkdocs_chart_plugin['integrations']['mkdocs_material']['themes_dark'].includes(materialColorScheme)
+            ? mkdocs_chart_plugin['vega_theme_dark']
+            : mkdocs_chart_plugin['vega_theme'];
+    }
+    // Get theme according to user's preferred color scheme on the browser or OS
+    if (window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? mkdocs_chart_plugin['vega_theme_dark']
+            : mkdocs_chart_plugin['vega_theme'];
+    }
+    // Fall back to light theme
+    return mkdocs_chart_plugin['vega_theme'];
+}
+
 var vegalite_charts = [];
 
 function embedChart(block, schema) {
@@ -178,14 +198,10 @@ function embedChart(block, schema) {
     // in a different theme
     vegalite_charts.push({'block' : block, 'schema': schema});
 
-    // mkdocs-material has a dark mode
-    // detect which one is being used
-    var theme = (document.querySelector('body').getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
-
     // Render the chart
     vegaEmbed(block, schema, {
         actions: false, 
-        "theme": theme, 
+        "theme": getTheme(),
         "renderer": mkdocs_chart_plugin['vega_renderer']
     });
 }
@@ -216,26 +232,27 @@ const chartplugin = className => {
 
     }
   }
-  
+
+function updateCharts() {
+    const theme = getTheme();
+    for (let i = 0; i < vegalite_charts.length; i++) {
+        vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
+            actions: false,
+            theme,
+            "renderer": mkdocs_chart_plugin['vega_renderer']
+        });
+    }
+}
 
 // mkdocs-material has a dark mode including a toggle
 // We should watch when dark mode changes and update charts accordingly
 
-var bodyelement = document.querySelector('body');
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type === "attributes") {
         
         if (mutation.attributeName == "data-md-color-scheme") {
-
-            var theme = (bodyelement.getAttribute('data-md-color-scheme') == 'slate') ? mkdocs_chart_plugin['vega_theme_dark'] : mkdocs_chart_plugin['vega_theme'];
-            for (let i = 0; i < vegalite_charts.length; i++) {
-                vegaEmbed(vegalite_charts[i].block, vegalite_charts[i].schema, {
-                    actions: false, 
-                    "theme": theme, 
-                    "renderer": mkdocs_chart_plugin['vega_renderer']
-                });
-            }
+            updateCharts();
         }
 
       }
@@ -245,6 +262,12 @@ observer.observe(bodyelement, {
 attributes: true //configure it to listen to attribute changes
 });
 
+// Watch for user's preferred color scheme changes and update charts accordingly
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        updateCharts();
+    });
+}
 
 // Load when DOM ready
 if (typeof document$ !== "undefined") {
