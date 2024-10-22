@@ -13,8 +13,6 @@
 
 Includes supports for [mkdocs-material](https://github.com/squidfunk/mkdocs-material) theme features like [instant loading](https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/?h=reload#instant-loading) and [dark color themes](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette-toggle).
 
-Do checkout the other [charting plugins for mkdocs](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins#images-tables-charts--graphs) that might suit your specific use-case better.
-
 ## Installation
 
 Install the plugin using `pip3`:
@@ -47,21 +45,14 @@ markdown_extensions:
 
 ## Usage
 
-You can insert any valid [vegalite](https://vega.github.io/vega-lite/) JSON into a markdown file using:
+You can insert any valid [vegalite](https://vega.github.io/vega-lite/) JSON into a markdown file. But the real magic is that you can visualize `.json` or `.csv` files:
 
-````
-```vegalite
+````json hl_lines="4"
+```vegalite 
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "A simple bar chart with embedded data.",
-  "data": {
-    "values": [
-      {"a": "A", "b": 28}, {"a": "B", "b": 55}, {"a": "C", "b": 43},
-      {"a": "D", "b": 91}, {"a": "E", "b": 81}, {"a": "F", "b": 53},
-      {"a": "G", "b": 19}, {"a": "H", "b": 87}, {"a": "I", "b": 52}
-    ]
-  },
-  "mark": "bar",
+  "data": {"url" : "assets/charts/data/basic_bar_chart.json"},
+  "mark": {"type": "bar", "tooltip": true},
   "encoding": {
     "x": {"field": "a", "type": "nominal", "axis": {"labelAngle": 0}},
     "y": {"field": "b", "type": "quantitative"}
@@ -70,9 +61,10 @@ You can insert any valid [vegalite](https://vega.github.io/vega-lite/) JSON into
 ```
 ````
 
-See the [vegalite editor](https://vega.github.io/editor/#/) for a range of examples you could copy-paste into your mkdocs site
+See the [vegalite editor](https://vega.github.io/editor/#/) for a range of examples.
 
 ## Documentation
 
 See the documentation [timvink.github.io/mkdocs-charts-plugin](https://timvink.github.io/mkdocs-charts-plugin/) for examples, use cases and options.
 
+Do checkout the other [charting plugins for mkdocs](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins#images-tables-charts--graphs) that might suit your specific use-case better.
