@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="mkdocs-charts-plugin",
-    version="0.0.11",
+    version="0.0.12",
     description="MkDocs plugin to add charts from data",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -24,6 +24,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "License :: OSI Approved :: MIT License",
     ],
     install_requires=["mkdocs>=1.1", "pymdown-extensions>=9.2"],
