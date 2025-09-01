@@ -59,7 +59,12 @@ class ChartsPlugin(BasePlugin):
         config["extra_javascript"] = ["js/mkdocs-charts-plugin.js"] + config["extra_javascript"]
 
         # Make sure custom fences are configured.
-        custom_fences = config.get("mdx_configs", {}).get("pymdownx.superfences", {}).get("custom_fences", {})
+        parent_config = config.get("mdx_configs", {})
+        if "pymdownx.superfences" not in parent_config:
+            # If "superfences" was loaded through the "extra" plugin,
+            # then its config will be in a different place
+            parent_config = parent_config.get("pymdownx.extra", {})
+        custom_fences = parent_config.get("pymdownx.superfences", {}).get("custom_fences", {})
         if not custom_fences:
             raise PluginError(
                 "[mkdocs_charts_plugin]: You have not configured any custom fences, please see the setup instructions."
